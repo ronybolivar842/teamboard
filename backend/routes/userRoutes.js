@@ -2,11 +2,10 @@ import express from "express";
 import userController from "../controllers/userController.js";
 import userValidate from "../middleware/userValidate.js";
 import roleValidate from "../middleware/roleValidate.js";
-import user from "../models/user.js";
 
 const router = express.Router();
 
-//http:localhost:3001/api/role/registerRole
+
 
 router.post(
   "/registerUser",
@@ -16,6 +15,11 @@ router.post(
 );
 
 router.get("/listUser/:name?", userController.listUser);
-router.post("/login", userController.login)
+router.get("/listUserAdmin/:name?", userController.listUserAdmin);
+router.post("/login", userController.login);
+router.put("/delete/:_id", userController.deleteUser);
+router.put("/updateUserAdmin",userValidate.status ,userController.updateUserAdmin);
+
+
 
 export default router;
